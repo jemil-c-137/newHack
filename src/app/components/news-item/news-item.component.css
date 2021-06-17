@@ -1,0 +1,9 @@
+.comment {
+  border: 3px solid green;
+  padding-right: 10px;
+
+}
+
+.inner {
+  border:  1px pink solid;
+}

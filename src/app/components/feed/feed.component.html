@@ -1,0 +1,13 @@
+<div class="pt-3 pb-3">
+  <ul *ngIf="!isFetching && !errorMessage" class="list-group list-group mt-3">
+    <app-news-feed-item
+      class="list-group-item"
+      [newsItem]="newsItem"
+      *ngFor="let newsItem of newsItems"
+    ></app-news-feed-item>
+  </ul>
+  <div class="alert alert-info" *ngIf="isFetching">Loading...</div>
+  <div class="alert alert-danger" *ngIf="!isFetching && errorMessage">
+    {{ errorMessage }}
+  </div>
+</div>

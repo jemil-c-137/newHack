@@ -1,0 +1,22 @@
+<div class="card mt-3 mb-3" *ngIf="comment.author" > <!-- some news have no author therefore don't have text  -->
+  <div class="card-header d-flex justify-content-between">
+    <p>{{ comment.author }}</p>
+    <span>{{ comment.created_at | date }}</span>
+  </div>
+  <div class="card-body">
+    <!-- parsing text to HTML -->
+    <p [innerHTML]="comment.text"></p>
+    <button
+      class="btn btn-light btn-sm"
+      *ngIf="comment.children.length > 0"
+      (click)="onToggleShow()"
+    >{{showResponses ? 'hide comments' : 'show comments'}}
+    </button>
+    <div *ngIf="comment.children.length > 0 && showResponses">
+      <app-comments-feed
+        *ngFor="let nestedComment of comment.children"
+        [comment]="nestedComment"
+      ></app-comments-feed>
+    </div>
+  </div>
+</div>

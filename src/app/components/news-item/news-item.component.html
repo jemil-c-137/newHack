@@ -1,0 +1,36 @@
+<div class="card mt-5 mb-5">
+  <div *ngIf="errorMessage" class="alert alert-danger mb-0">
+    {{ errorMessage }}
+  </div>
+  <div *ngIf="isFetching && !errorMessage">Loading...</div>
+  <div *ngIf="!isFetching && !errorMessage" class="card-body">
+    <h3 class="card-title">{{ newsItem.title }}</h3>
+
+    <div class="text-muted d-flex align-items-center">
+      <span>{{ newsItem.points }} points by&nbsp;</span>
+      <span class="badge bg-primary">{{ newsItem.author }}</span>
+      <span>&nbsp;Date:&nbsp;</span>
+      <span class="badge bg-info">{{ newsItem.date | date }} </span>
+    </div>
+
+    <p [innerHTML]="newsItem.text" class="card-text"></p>
+
+    <div
+      *ngIf="newsItem.comments && newsItem.comments.length > 0; else elseBlock"
+    >
+      <a class="btn btn-primary mb-2" (click)="onToggleComments()"
+        >Toggle comments</a
+      >
+      <div *ngIf="showComments">
+        <app-comments-feed
+          *ngFor="let comment of newsItem.comments"
+          [comment]="comment"
+        ></app-comments-feed>
+      </div>
+    </div>
+
+    <ng-template #elseBlock class="alert alert-light" role="alert">
+      No comments yet!
+    </ng-template>
+  </div>
+</div>

@@ -1,0 +1,12 @@
+.item__title {
+  font-size: 26px;
+  margin-bottom: 0;
+}
+
+
+.item__details {
+  color: #828282;
+  display: flex;
+  justify-content: flex-start;
+  column-gap: 10px;
+}
